@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>THEY WHO WRESTLE WITH GOD</title>
+  
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Bellefair&display=swap');
+
+.bellefair-regular {
+  font-family: "Bellefair", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+  color: #eee;
+  font-family: 'Bellefair', 'Georgia', serif;
+  line-height: 1.6;
+}
+
+#white_title_text {
+  color: black;
+}
+#gold_title_text {
+  color: goldenrod;
+}
+
+/* Hero Wrapper */
+.hero-wrapper {
+  margin: 1.5rem auto;
+  border: 5px solid #111;
+  border-radius: 8px;
+  overflow: hidden;
+  width: 75%;  /* content width */
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;  /* align left */
+  padding-left: 5vw;             /* tasteful left padding */
+  padding-right: 5vw;            /* some right padding */
+}
+
+p {
+  font-size: 24pt;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-title {
+  font-size: 4rem;
+  max-width: 100%;
+  z-index: 1;
+  position: relative;
+  text-align: left;             /* left align text */
+  margin-left: 1rem;            /* margin from left inside container */
+  line-height: 1.1;
+}
+
+.section {
+  padding: 6rem 0;
+  width: 75%;
+  margin: 0 auto;               /* center sections */
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 1s ease;
+}
+
+/* Hide intro initially */
+#intro {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* When intro visible */
+#intro.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.story-image {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 2rem;
+  border-radius: 4px;
+}
+
+.story-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.story-body {
+  font-size: 1.2rem;
+}
+
+.hero-wrapper.fade-out {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-wrapper {
+    margin: 1rem auto;
+    border-width: 3px;
+    width: 90%;
+  }
+
+  .section {
+    padding: 3rem 1.5rem;
+    width: 90%;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+    margin-left: 0.8rem;
+  }
+
+  .story-title {
+    font-size: 1.75rem;
+  }
+
+  .story-body {
+    font-size: 1rem;
+  }
+
+  .story-image {
+    max-height: 60vh;
+  }
+
+  #white_title_text {
+    color: black;
+  }
+  #gold_title_text {
+    color: goldenrod;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.5rem;
+    margin-left: 0.6rem;
+  }
+}
+  </style>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const hero = document.getElementById('hero');
+      const intro = document.getElementById('intro');
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.intersectionRatio < 0.25) {
+            hero.classList.add('fade-out');
+            intro.classList.add('visible');
+            AOS.refresh();
+          } else {
+            hero.classList.remove('fade-out');
+            intro.classList.remove('visible');
+          }
+        },
+        {
+          root: null,
+          threshold: [0, 0.25, 1]
+        }
+      );
+
+      observer.observe(hero);
+    });
+  </script>
+  
+</head>
+<body>
+
+  <!-- Hero Section with Border -->
+  <div class="hero-wrapper" id="hero">
+    <section class="hero">
+      <img 
+        src="hero_img.jpg" 
+        alt="Hero Background" 
+        class="hero-bg" 
+        data-aos="fade-in" 
+        data-aos-delay="500" 
+        data-aos-duration="1500" 
+      />
+      <div class="hero-title" data-aos="fade-up" data-aos-delay="2400">
+        <h1 id="white_title_text">THEY<br>WHO<br>WRESTLE</h1>
+        <h1 id="gold_title_text">WITH<br>GOD</h1>
+      </div>
+    </section>
+  </div>
+
+  <!-- Intro Section -->
+  <section class="section" id="intro" data-aos="fade-up" data-aos-delay="200">
+    <p><i>And Jacob was left alone; and there wrestled a man with him until the breaking of the day.</i></p>
+
+    <p><i>And when he saw that he prevailed not against him, he touched the hollow of his thigh; and the hollow of Jacob's thigh was out of joint, as he wrestled with him.</i></p>
+
+    <p><i>And he said, Let me go, for the day breaketh. And he said, I will not let thee go, except thou bless me.</i></p>
+
+    <p><i>And he said unto him, What is thy name? And he said, Jacob.</i></p>
+
+    <p><i>And he said, Thy name shall be called no more Jacob, but Israel: for as a prince hast thou power with God and with men, and hast prevailed.</i></p>
+
+    <p><i>And Jacob asked him, and said, Tell me, I pray thee, thy name. And he said, Wherefore is it that thou dost ask after my name? And he blessed him there.</i></p>
+
+    <p><i>And Jacob called the name of the place Peniel: for I have seen God face to face, and my life is preserved.</i></p>
+  </section>
+
+  <!-- Story 1 -->
+  <section class="section">
+    <img src="rodeo_night-monochrome.jpg" alt="Story 1 Image" class="story-image" data-aos="fade-up" />
+    <h2 class="story-title" data-aos="fade-up" data-aos-delay="100">THE HYACINTH GIRL</h2>
+    <div class="story-body" data-aos="fade-in" data-aos-delay="300">
+      <p>The blonde girl in the hyacinth blouse wrinkled her nose. "I don't see much point in it," she said, punctuating it with a swig of beer.</p>
+      <p>"You're telling me you grew up in Wyoming, and you don't see the point of a rodeo?" He asked her. His chaps hugged uncomfortably against his skin; they never seemed to sit right.</p>
+      <p>"Just 'cause I was born and raised here doesn't mean I'm from here."</p>
+      <p>"How cryptic."</p>
+      <p>"Not really," she said flatly.</p>
+      <p>The hyacinth girl peeled the label from her bottle and he watched her hands. "So," she said, "why do you do it?"</p>
+      <p>"You do realize I came over here to get your number, right? Not have a freakin' therapy session?"</p>
+      <p>The hyacinth girl laughed for the first time: balmy, tropical. She really wasn't from here. "Come on. What's the appeal?"</p>
+      <p>"Fine. My dad always did. And his dad. It's what we do."</p>
+      <p>"That it?"</p>
+      <p>"Do I need another reason?"</p>
+      <p>The hyacinth girl shrugged. "Guess I don't really get doing something just for the sake of it."</p>
+      <p>"Plenty of reasons. Tradition, camaraderie. Developing a skill and perfecting it."</p>
+      <p>The hyacinth girl nodded, staring off at the ring of stadium lights framing the rodeo, lifting bleachers out of the inky black night. "So you enjoy it?"</p>
+      <p>"It's what I do."</p>
+      <p>The hyacinth girl and the boy stood in silence. A desert breeze lifted earth, dusting their boots. Trucks and horse trailers surrounded the rodeo; Indians circling a wagon train.</p>
+      <p>"Well, my dad was an alcoholic," the hyacinth girl said suddenly. "Still is, I guess; says AA taught him he'll always be 'in recovery'." She drew quotes in the air with her fingers. "But that was way before I was born. Either way, no skin off my back."</p>
+      <p>Some moments passed, and the loudspeakers mounted atop wooden poles dotting the area hummed the life, the announcers directing all contestants to their booths with tinmetal voices. "Good luck out there," the hyacinth girl said.</p>
+      <p>Once at the rodeo grounds, the boy hopped the fence and spun slowly, taking in the palisade of iron fences and gates glinting in the harsh stadium lights, aberrations flicking across the railings with the jostle of cattle. He made his way to where the other contestants were, sitting at the end of the line and feeling the nervous energy course through them and into his stomach, like swallowing a live wire.</p>
+      <p>Riders came and went and suddenly it was the boy's turn. Approaching the gate to mount the bull, he looked back at the hyacinth girl, but she had her head tilted back, draining another can.</p>
+      <p>The bull charged out the gate, bucking, and the boy hadn't held on but for three seconds when he was bucked off entirely, slamming into the cratered earth. Pain ripped a crown around his skull. A thread of blood spooled out of his temple, singeing his hair crimson and running down his cheek, and the gift was accepted by God.</p>
+      <p>The boy struggled to his feet and looked for the hyacinth girl. She met his eyes, then turned away.</p>
+    </div>
+  </section>
+
+  <!-- Story 2 -->
+  <section class="section">
+    <img src="story2-image.jpg" alt="Story 2 Image" class="story-image" data-aos="fade-up" />
+    <h2 class="story-title" data-aos="fade-up" data-aos-delay="100">Story 2 Title</h2>
+    <div class="story-body" data-aos="fade-in" data-aos-delay="300">
+      <p>
+        [Story 2 body...]
+      </p>
+    </div>
+  </section>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
