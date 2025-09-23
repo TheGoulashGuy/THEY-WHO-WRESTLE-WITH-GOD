@@ -115,14 +115,31 @@ p {
   line-height: 1.1;
 }
 
-.story-image {
+/*.story-image {
   width: 100%;
   max-height: 80vh;
   object-fit: cover;
   display: block;
   margin-bottom: 2rem;
   border-radius: 4px;
+}*/
+
+.story-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 2rem;
+  border-radius: 4px;
 }
+
+/* Keep cropped look on smaller screens */
+@media (max-width: 768px) {
+  .story-image {
+    max-height: 60vh;
+    object-fit: cover;
+  }
+}
+
 
 .story-title {
   font-size: 2.5rem;
