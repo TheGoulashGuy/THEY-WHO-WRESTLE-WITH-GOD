@@ -210,54 +210,64 @@ p.section-break {
 }
   </style>
   
- <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Hardcoded section order
-    const sections = [
-      document.getElementById('hero'),
-      document.getElementById('intro'),
-      document.getElementById('story1'),
-      document.getElementById('story2'),
-      document.getElementById('story3'),
-      document.getElementById('story4'),
-    ];
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // List the sections in order
+      const sections = [
+        document.getElementById('hero'),
+        document.getElementById('intro'),
+        document.getElementById('story1'),
+        document.getElementById('story2'),
+		document.getElementById('story3'),
+		document.getElementById('story4'),
 
-    // Start with only hero visible
-    sections.forEach((sec, i) => {
-      if (i === 0) {
-        sec.classList.add('visible');
-      } else {
-        sec.classList.remove('visible');
-      }
-    });
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        const currentIndex = sections.indexOf(entry.target);
-        if (currentIndex === -1) return;
+      ];
 
-        if (entry.intersectionRatio >= 0.25) {
-          // Section is in view → fade it in
-          sections[currentIndex].classList.add('visible');
+      // Initially only the first visible
+      sections.forEach((sec, i) => {
+        if (i === 0) {
+          sec.classList.add('visible');
         } else {
-          // Section scrolled past → fade it out
-          sections[currentIndex].classList.remove('visible');
+          sec.classList.remove('visible');
         }
       });
 
-      // Refresh AOS so animations retrigger on visibility changes
-      AOS.refresh();
-    }, {
-      root: null,
-      threshold: [0, 0.25, 1]
+      // Observer callback: check if current section is mostly visible
+      // If less than 25% visible, hide current and show next
+      // If scrolled back up, show current and hide next
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const currentIndex = sections.indexOf(entry.target);
+          if (currentIndex === -1) return;
+
+          if (entry.intersectionRatio < 0.25) {
+            // Fade out current
+            sections[currentIndex].classList.remove('visible');
+
+            // Fade in next if exists
+            if (sections[currentIndex + 1]) {
+              sections[currentIndex + 1].classList.add('visible');
+            }
+          } else {
+            // When visible again, fade in current and fade out next
+            sections[currentIndex].classList.add('visible');
+            if (sections[currentIndex + 1]) {
+              sections[currentIndex + 1].classList.remove('visible');
+            }
+          }
+          // Refresh AOS so animations re-trigger on visibility changes
+          AOS.refresh();
+        });
+      }, {
+        root: null,
+        threshold: [0, 0.25, 1]
+      });
+
+      // Observe all sections
+      sections.forEach(section => observer.observe(section));
     });
-
-    // Observe all hardcoded sections
-    sections.forEach(section => observer.observe(section));
-  });
-</script>
-
-
+  </script>
   
 </head>
 <body>
